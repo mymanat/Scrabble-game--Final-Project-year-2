@@ -1,0 +1,22 @@
+<mat-card class="easel-container" tabindex="0" (focusout)="cancelSelection()">
+    <section class="letters-container">
+        <svg
+            class="letter"
+            app-letter
+            *ngFor="let letter of easel; let i = index"
+            height="50"
+            width="50"
+            viewBox="0 0 50 50"
+            xmlns="http://www.w3.org/2000/svg"
+            [letter]="letter"
+            [value]="(pointsPerLetter$ | async)?.get(letter)"
+            (contextmenu)="selectLetterToSwitch($event, i)"
+            (click)="selectLetterForManipulation(i)"
+            [color]="letterColor[i]"
+        ></svg>
+    </section>
+    <section *ngIf="exchangeLetterSelected()" id="button-container">
+        <button mat-raised-button [disabled]="disableExchange()" (mousedown)="exchangeSelectedLetters()">Échanger</button>
+        <button mat-raised-button (mousedown)="cancelExchangeSelection()">Annuler</button>
+    </section>
+</mat-card>

@@ -1,0 +1,63 @@
+<mat-stepper linear #stepper (selectionChange)="onStepChange()">
+    <mat-step [completed]="selectedRoom !== undefined" [editable]="true">
+        <ng-template matStepLabel>Rejoindre une partie</ng-template>
+        <button
+            *ngIf="roomListLength() !== 0"
+            mat-raised-button
+            color="primary"
+            id="choose-randomly"
+            [disabled]="roomListLength() <= 1"
+            (click)="selectRandomRoom()"
+        >
+            <mat-icon>published_with_changes</mat-icon> Placement aléatoire
+        </button>
+        <h2>Rooms:</h2>
+        <mat-list>
+            <mat-list-item *ngFor="let room of roomList$ | async" class="room-list">
+                <p class="room">
+                    <strong>Hôte</strong>: {{ room.gameOptions.hostname }} <br />
+                    <strong>Temps</strong>: {{ timerToString(room.gameOptions.timePerRound) }}<br />
+                    <strong>Dictionnaire</strong>: {{ room.gameOptions.dictionaryType }} <br />
+                    <strong>Mode de Jeu</strong>: {{ room.gameOptions.gameMode }}
+                </p>
+                <button mat-raised-button matStepperNext color="primary" class="button join-room" (click)="selectRoom(room)">Rejoindre</button>
+            </mat-list-item>
+        </mat-list>
+    </mat-step>
+    <mat-step [stepControl]="formGroup" [editable]="false">
+        <mat-card>
+            <form [formGroup]="formGroup">
+                <ng-template matStepLabel>Entrez votre nom</ng-template>
+                <p class="room">
+                    <strong>Hôte</strong>: {{ selectedRoom?.gameOptions?.hostname }} <br />
+                    <strong>Temps</strong>: {{ timerToString(selectedRoom?.gameOptions?.timePerRound) }}<br />
+                    <strong>Dictionnaire</strong>: {{ selectedRoom?.gameOptions?.dictionaryType }} <br />
+                    <strong>Mode de Jeu</strong>: {{ selectedRoom?.gameOptions?.gameMode }}
+                </p>
+                <mat-form-field centered class="parameter-container" appearance="fill">
+                    <mat-label>Veuillez saisir votre nom</mat-label>
+                    <input [attr.disabled]="true" matInput formControlName="name" placeholder="Nom" />
+                </mat-form-field>
+                <mat-card-actions>
+                    <button
+                        *ngIf="(pendingRoom$ | async) === undefined; else elseCancelButton"
+                        (click)="joinGame()"
+                        mat-raised-button
+                        matStepperNext
+                        color="primary"
+                        id="confirm-name"
+                        [disabled]="!formGroup.valid"
+                        class="button centered"
+                    >
+                        Confirmer
+                    </button>
+                </mat-card-actions>
+                <ng-template #elseCancelButton>
+                    <button mat-raised-button matStepperNext color="warn" class="button centered" (click)="cancelJoin()">
+                        <mat-spinner diameter="25" class="spinner"></mat-spinner><span class="cancel">Annuler</span>
+                    </button>
+                </ng-template>
+            </form>
+        </mat-card>
+    </mat-step>
+</mat-stepper>

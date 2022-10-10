@@ -1,0 +1,32 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    height: auto;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.main-menu {
+    display: grid;
+    width: 90%;
+    max-width: 500px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 60px 60px 60px;
+    gap: 15px;
+}
+
+.welcome-message {
+    font-size: 25px;
+}
+
+img {
+    cursor: pointer;
+    margin-bottom: 60px;
+}

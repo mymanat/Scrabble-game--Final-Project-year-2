@@ -1,0 +1,5 @@
+<h1>Choisir les parametres de la partie Solo</h1>
+<app-multi-config-window
+    (gameOptionsSubmitted)="onGameOptionsSubmit($event.gameOptions, $event.botLevel)"
+    [isSoloGame]="true"
+></app-multi-config-window>

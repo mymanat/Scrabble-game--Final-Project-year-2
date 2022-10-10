@@ -1,0 +1,24 @@
+#confirm-settings {
+    position: absolute;
+    right: calc(50% - 140px / 2);
+    bottom: 5px;
+    margin-top: 5%;
+    margin-left: 5%;
+}
+.parameter-container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.json-label {
+    margin-right: 10px;
+}
+
+.json-input {
+    margin-bottom: 15px;
+}
+
+.dialog {
+    width: 500px;
+}

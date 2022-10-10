@@ -1,0 +1,8 @@
+<svg:g [attr.transform]="'translate(' + pos.x * 50 + ' ' + pos.y * 50 + ')'">
+    <g *ngIf="(selection$ | async)?.cell?.x === pos.x && (selection$ | async)?.cell?.y === pos.y">
+        <rect width="50" height="50" class="selected"></rect>
+        <text *ngIf="(selection$ | async)?.orientation === 'h'" x="25" y="25" class="cell-text">→</text>
+        <text *ngIf="(selection$ | async)?.orientation === 'v'" x="25" y="25" class="cell-text">↓</text>
+    </g>
+    <rect width="50" height="50" (mousedown)="click()" opacity="0" class="base"></rect>
+</svg:g>

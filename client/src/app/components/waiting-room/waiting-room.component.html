@@ -1,0 +1,67 @@
+<div class="general-container">
+    <section id="waiting-section" *ngIf="(player2$ | async) === undefined">
+        <div id="text-container">
+            <h1>En attente d'un autre joueur...</h1>
+        </div>
+        <div id="spinner-container">
+            <mat-spinner></mat-spinner>
+        </div>
+    </section>
+    <section *ngIf="(player2$ | async) && (roomInfo$ | async)?.gameOptions?.hostname">
+        <h1>Partie de Jeu :</h1>
+        <mat-tab-group id="tabs-container" dynamicHeight>
+            <mat-tab label="Joueurs">
+                <b>{{ (roomInfo$ | async)?.gameOptions?.hostname }}</b> contre <b>{{ player2$ | async }}</b>
+            </mat-tab>
+            <mat-tab label="Temps">
+                <b>{{ (roomInfo$ | async)?.gameOptions?.timePerRound }}</b> secondes
+            </mat-tab>
+            <mat-tab label="Dictionnaire">
+                <b>{{ (roomInfo$ | async)?.gameOptions?.dictionaryType }}</b>
+            </mat-tab>
+        </mat-tab-group>
+    </section>
+    <div id="button-container">
+        <button
+            mat-stroked-button
+            color="primary"
+            routerLink="/game"
+            (click)="acceptInvite()"
+            id="begin-button"
+            [disabled]="(player2$ | async) === undefined"
+        >
+            <mat-icon>task_alt</mat-icon>
+            Démarrer
+        </button>
+        <button mat-stroked-button color="primary" (click)="rejectInvite()" [disabled]="(player2$ | async) === undefined">
+            <mat-icon>delete_forever</mat-icon>
+            Rejeter
+        </button>
+    </div>
+    <div id="cancel-button-container">
+        <button mat-raised-button (click)="quitWaitingRoom()" color="warn" id="cancel-button">
+            <mat-icon>undo</mat-icon>
+            Annuler
+        </button>
+    </div>
+    <form [formGroup]="settingsForm" *ngIf="(player2$ | async) === undefined">
+        <div id="button-solo-label">
+            <h2>Convertir partie en partie solo</h2>
+        </div>
+        <div id="solo-button">
+            <button mat-raised-button color="basic" (click)="convertToSolo()" routerLink="/game">
+                Solo
+                <mat-icon>person_outline</mat-icon>
+            </button>
+        </div>
+        <div id="parameter-solo-container">
+            <mat-form-field id="parameter-solo-button" appearance="fill">
+                <mat-label>Niveau de l'adversaire</mat-label>
+                <mat-select formControlName="botLevel">
+                    <mat-option value="Débutant">Débutant</mat-option>
+                    <mat-option value="Expert">Expert</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </form>
+</div>

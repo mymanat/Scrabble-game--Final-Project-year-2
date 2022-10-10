@@ -1,0 +1,26 @@
+<mat-card>
+    <mat-dialog-content>
+        <div>
+            <h1>Configuration d'un nom de joueur virtuel</h1>
+        </div>
+        <form [formGroup]="settingsForm" (ngSubmit)="onSubmit()">
+            <mat-form-field class="parameter-container" appearance="fill">
+                <mat-label>Nom du Joueur Virtuel</mat-label>
+                <input matInput formControlName="name" placeholder="Nom" />
+            </mat-form-field>
+            <mat-form-field class="parameter-container" appearance="fill">
+                <mat-label>Niveau Du Joueur Virtuel</mat-label>
+                <mat-select formControlName="difficulty">
+                    <mat-option value="Débutant">Débutant</mat-option>
+                    <mat-option value="Expert">Expert</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-card-actions>
+                <button mat-raised-button color="primary" type="submit" id="confirm-settings" [disabled]="!settingsForm.valid">
+                    Confirmer le Joueur Virtuel
+                </button>
+            </mat-card-actions>
+        </form>
+    </mat-dialog-content>
+</mat-card>

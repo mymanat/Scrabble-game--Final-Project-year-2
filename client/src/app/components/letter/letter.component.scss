@@ -1,0 +1,24 @@
+.background {
+    fill: #fffcec;
+}
+
+.letter {
+    text-anchor: middle;
+    fill: black;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+.blank {
+    .letter {
+        fill: #0000ad;
+    }
+    .background {
+        fill: #ecf2ff;
+    }
+}
+
+.value {
+    text-anchor: end;
+    fill: black;
+    font-size: min(1em, 1.1rem);
+}

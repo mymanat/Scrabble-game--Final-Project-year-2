@@ -1,0 +1,43 @@
+<mat-card class="dictionaries">
+    <mat-card-title>Dictionnaires</mat-card-title>
+    <mat-card-subtitle>Ajout/Retrait des dictionaires disponibles</mat-card-subtitle>
+    <mat-card-actions>
+        <button mat-icon-button (click)="addDictionary()">
+            <mat-icon matTooltip="Ajouter">add</mat-icon>
+        </button>
+        <button mat-icon-button (click)="resetDictionaries()">
+            <mat-icon matTooltip="Réinitialiser">restore</mat-icon>
+        </button>
+    </mat-card-actions>
+    <mat-card-content class="dict-list">
+        <ul>
+            <li class="dictionary" *ngFor="let dictionary of dictionaries$ | async; let i = index">
+                <mat-card>
+                    <mat-card-title class="dictionary-title">{{ dictionary.title }}</mat-card-title>
+                    <mat-card-subtitle class="dictionary-description">{{ dictionary.description }} </mat-card-subtitle>
+                    <mat-card-actions>
+                        <button
+                            mat-icon-button
+                            (click)="modifyDictionary(i, dictionary)"
+                            [disabled]="dictionary.title === defaultDictionary"
+                            matTooltip="Editer"
+                        >
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button
+                            mat-icon-button
+                            (click)="deleteDictionary(dictionary)"
+                            [disabled]="dictionary.title === defaultDictionary"
+                            matTooltip="Supprimer"
+                        >
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                        <button mat-icon-button (click)="downloadDictionary(dictionary)" matTooltip="Télécharger">
+                            <mat-icon>get_app</mat-icon>
+                        </button>
+                    </mat-card-actions>
+                </mat-card>
+            </li>
+        </ul>
+    </mat-card-content>
+</mat-card>

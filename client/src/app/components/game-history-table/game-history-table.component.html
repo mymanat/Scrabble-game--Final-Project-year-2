@@ -1,0 +1,51 @@
+<mat-card class="table-container">
+    <mat-card-title
+        >Historique des parties
+        <button mat-icon-button (click)="resetGameHistory()">
+            <mat-icon matTooltip="Réinitialiser">restore</mat-icon>
+        </button>
+    </mat-card-title>
+
+    <mat-card-content class="table-content">
+        <table mat-table [dataSource]="dataGameHistory" class="mat-elevation-z8">
+            <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef>Date</th>
+                <td mat-cell *matCellDef="let element">{{ element.date }}</td>
+            </ng-container>
+            <ng-container matColumnDef="gameDuration">
+                <th mat-header-cell *matHeaderCellDef>Durée</th>
+                <td mat-cell *matCellDef="let element">{{ element.gameDuration }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="Player1">
+                <th mat-header-cell *matHeaderCellDef>Joueur 1</th>
+                <td mat-cell *matCellDef="let element">{{ element.namePlayer1 }} : {{ element.scorePlayer1 }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="Player2">
+                <th mat-header-cell *matHeaderCellDef>Joueur 2</th>
+                <td mat-cell *matCellDef="let element">{{ element.namePlayer2 }} : {{ element.scorePlayer2 }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="gameMode">
+                <th mat-header-cell *matHeaderCellDef>Mode</th>
+                <td mat-cell *matCellDef="let element">{{ element.gameMode }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="isSurrender">
+                <th mat-header-cell *matHeaderCellDef>Partie solo abandonnée?</th>
+                <td mat-cell *matCellDef="let element">
+                    <mat-icon *ngIf="element.isSurrender">done</mat-icon>
+                    <mat-icon *ngIf="!element.isSurrender">close</mat-icon>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+            <tr *matNoDataRow class="center">
+                <td class="mat-cell" [attr.colspan]="displayedColumns.length">L'historique des parties a bien été réinitialiser</td>
+            </tr>
+        </table>
+    </mat-card-content>
+</mat-card>

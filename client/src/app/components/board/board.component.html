@@ -1,0 +1,64 @@
+<svg [attr.viewBox]="'0 0 ' + (boardSize + 1) * 50 + ' ' + (boardSize + 1) * 50" xmlns="http://www.w3.org/2000/svg" class="board">
+    <defs>
+        <!-- Effet 3D : https://stackoverflow.com/questions/60344788/svg-light-and-shadow-a-3d-feelling -->
+        <filter id="3d-effect">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="2" result="blur1" />
+            <feSpecularLighting result="specOut" in="blur1" specularConstant="0.5" specularExponent="12" lighting-color="#fff">
+                <feDistantLight azimuth="225" elevation="45" />
+            </feSpecularLighting>
+            <feComposite in="SourceGraphic" in2="specOut" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" />
+        </filter>
+
+        <!-- Pattern pour la grille du fond -->
+        <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+            <rect filter="url(#3d-effect)" width="50" height="50" fill="#c4bda1" />
+        </pattern>
+
+        <clipPath id="cell-clip">
+            <rect x="0" y="0" width="50" height="50" />
+        </clipPath>
+    </defs>
+
+    <!-- Grille du fond-->
+    <rect x="50" y="50" [attr.width]="boardSize * 50" [attr.height]="boardSize * 50" fill="url(#grid)" />
+
+    <!-- Coordonées -->
+    <text [attr.x]="75 + i * 50" y="25" class="coordinate-text" *ngFor="let number of numberSequence(boardSize); let i = index">
+        {{ number }}
+    </text>
+    <text x="25" [attr.y]="75 + i * 50" class="coordinate-text" *ngFor="let number of letterSequence(boardSize); let i = index">
+        {{ number }}
+    </text>
+
+    <g transform="translate(50, 50)">
+        <ng-container *ngFor="let multipliersColumn of multipliers$ | async; let i = index">
+            <ng-container *ngFor="let multiplier of multipliersColumn; let j = index">
+                <g *ngIf="multiplier?.amount === 2 && multiplier?.type === multiplierType.Letter" app-cell-letter-x2 [pos]="{ x: i, y: j }"></g>
+                <g *ngIf="multiplier?.amount === 3 && multiplier?.type === multiplierType.Letter" app-cell-letter-x3 [pos]="{ x: i, y: j }"></g>
+                <g *ngIf="multiplier?.amount === 2 && multiplier?.type === multiplierType.Word" app-cell-word-x2 [pos]="{ x: i, y: j }"></g>
+                <g *ngIf="multiplier?.amount === 3 && multiplier?.type === multiplierType.Word" app-cell-word-x3 [pos]="{ x: i, y: j }"></g>
+            </ng-container>
+        </ng-container>
+        <g app-cell-star [pos]="{ x: (boardSize - 1) / 2, y: (boardSize - 1) / 2 }"></g>
+    </g>
+
+    <g transform="translate(50, 50)" style="font-size: 20px" [style.font-size]="(localSettings$ | async)?.zoom + 'em'">
+        <g
+            *ngFor="let letter of boardState$ | async | boardToList"
+            app-letter
+            [pos]="letter.position"
+            [letter]="letter.letter"
+            [value]="(pointsPerLetter$ | async)?.get(letter.letter)"
+            [blank]="letter.blank"
+            [color]="letter.lastPlacedWord"
+        ></g>
+    </g>
+
+    <g transform="translate(50, 50)">
+        <ng-container *ngFor="let multipliersColumn of multipliers$ | async; let i = index">
+            <ng-container *ngFor="let multiplier of multipliersColumn; let j = index">
+                <g app-cell-empty [pos]="{ x: i, y: j }"></g>
+            </ng-container>
+        </ng-container>
+    </g>
+</svg>

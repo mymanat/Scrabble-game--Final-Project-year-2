@@ -1,0 +1,82 @@
+<div class="sidebar">
+    <mat-card class="player-card" [class.active]="isActivePlayer((players$ | async)?.opponent) && !(gameStatus$ | async)?.gameEnded">
+        <h2>{{ (players$ | async)?.opponent?.name }}</h2>
+        <h3 *ngIf="(players$ | async)?.botLevel !== undefined">Niveau du JV: {{ (players$ | async)?.botLevel }}</h3>
+        <div *ngIf="!(gameStatus$ | async)?.gameEnded; else end_opponent_message">
+            <h3 *ngIf="isActivePlayer((players$ | async)?.opponent); else opponent_waiting">Temps restant {{ timerToString() }}</h3>
+            <ng-template #opponent_waiting>
+                <h3>En attente</h3>
+            </ng-template>
+        </div>
+        <ng-template #end_opponent_message>
+            <h3 *ngIf="(gameStatus$ | async)?.winner === (players$ | async)?.opponent?.name; else opponent_lost">Gagnant</h3>
+            <ng-template #opponent_lost>
+                <h3 *ngIf="(gameStatus$ | async)?.winner !== null">Perdant</h3>
+            </ng-template>
+        </ng-template>
+
+        <p>{{ (players$ | async)?.opponent?.score }}pts</p>
+        <p *ngIf="((players$ | async)?.opponent?.easel?.length ?? 0) < 7">{{ (players$ | async)?.opponent?.easel?.length }} lettres</p>
+    </mat-card>
+
+    <div class="info">
+        <mat-card *ngIf="(gameStatus$ | async)?.gameEnded && (gameStatus$ | async)?.winner !== null">
+            <h2>Félicitation {{ (gameStatus$ | async)?.winner }}!</h2>
+        </mat-card>
+        <mat-card *ngIf="(gameStatus$ | async)?.gameEnded && (gameStatus$ | async)?.winner === null">
+            <h2>Égalité!</h2>
+        </mat-card>
+        <mat-card>
+            <p>Réserve: {{ (gameStatus$ | async)?.letterPotLength }}</p>
+        </mat-card>
+        <div class="actions">
+            <button mat-mini-fab color="primary" (click)="zoomIn()">
+                <mat-icon aria-hidden="false" aria-label="Augmenter la taille des lettres">zoom_in</mat-icon>
+            </button>
+            <button mat-mini-fab color="primary" (click)="zoomOut()">
+                <mat-icon aria-hidden="false" aria-label="Diminuer la taille des lettres">zoom_out</mat-icon>
+            </button>
+        </div>
+        <button
+            mat-raised-button
+            color="primary"
+            (click)="placeWord()"
+            [disabled]="(modifiedCells$ | async)?.length === 0"
+            aria-label="Placer le mot"
+        >
+            <mat-icon>play_arrow</mat-icon>
+            Jouer
+        </button>
+        <button
+            mat-raised-button
+            color="primary"
+            (click)="getHint()"
+            [disabled]="!isActivePlayer((players$ | async)?.player) || (gameStatus$ | async)?.gameEnded"
+            aria-label="Prendre un indice"
+        >
+            <mat-icon>lightbulb</mat-icon>
+            Indice
+        </button>
+        <app-skip-turn-button></app-skip-turn-button>
+        <app-surrender-game-button></app-surrender-game-button>
+    </div>
+
+    <mat-card class="player-card" [class.active]="isActivePlayer((players$ | async)?.player) && !(gameStatus$ | async)?.gameEnded">
+        <p *ngIf="((players$ | async)?.player?.easel?.length ?? 0) < 7">{{ (players$ | async)?.player?.easel?.length }} lettres</p>
+        <p>{{ (players$ | async)?.player?.score }}pts</p>
+        <div *ngIf="!(gameStatus$ | async)?.gameEnded; else end_player_message">
+            <h3 *ngIf="isActivePlayer((players$ | async)?.player); else player_waiting">Temps restant {{ timerToString() }}</h3>
+            <ng-template #player_waiting>
+                <h3>En attente</h3>
+            </ng-template>
+        </div>
+        <ng-template #end_player_message>
+            <h3 *ngIf="(gameStatus$ | async)?.winner === (players$ | async)?.player?.name; else player_lost">Gagnant</h3>
+            <ng-template #player_lost>
+                <h3 *ngIf="(gameStatus$ | async)?.winner !== null">Perdant</h3>
+            </ng-template>
+        </ng-template>
+
+        <h2>{{ (players$ | async)?.player?.name }}</h2>
+    </mat-card>
+</div>

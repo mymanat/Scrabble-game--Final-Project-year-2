@@ -1,0 +1,29 @@
+<div class="container">
+    <mat-toolbar color="primary">
+        <button routerLink="/home" mat-icon-button class="home-button">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        <span>Mode {{ gameMode$ | async }}</span>
+    </mat-toolbar>
+
+    <main>
+        <img src="./assets/scrabble_logo.png" routerLink="/main-page" width="400" height="80" alt="Logo Scrabble" />
+
+        <div class="main-menu">
+            <button (click)="openSoloSettingsPage()" mat-raised-button color="primary">
+                <mat-icon>person</mat-icon>
+                Créer une partie solo
+            </button>
+
+            <button (click)="openGamePreparationPage()" mat-raised-button color="primary">
+                <mat-icon>groups</mat-icon>
+                Créer une partie multijoueur
+            </button>
+
+            <button (click)="openGameJoinPage()" mat-raised-button color="primary">
+                <mat-icon>groups</mat-icon>
+                Rejoindre une partie multijoueur
+            </button>
+        </div>
+    </main>
+</div>

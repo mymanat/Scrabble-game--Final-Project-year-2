@@ -1,0 +1,14 @@
+<mat-stepper linear #stepper>
+    <mat-step [stepControl]="formSettings" [editable]="isEditable">
+        <ng-template matStepLabel>Donnez les Paramètres</ng-template>
+        <app-multi-config-window
+            #MultiConfigWindowComponent
+            (gameOptionsSubmitted)="onGameOptionsSubmit($event.gameOptions)"
+            [isSoloGame]="false"
+        ></app-multi-config-window>
+    </mat-step>
+    <mat-step [stepControl]="formSettings" [editable]="isEditable">
+        <ng-template matStepLabel>Attente d'un joueur</ng-template>
+        <app-waiting-room></app-waiting-room>
+    </mat-step>
+</mat-stepper>

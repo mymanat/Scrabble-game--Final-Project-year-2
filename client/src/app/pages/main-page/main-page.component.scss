@@ -1,0 +1,96 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    height: auto;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+img {
+    cursor: pointer;
+    margin-bottom: 60px;
+}
+
+.team-name {
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+    color: green;
+}
+
+.footer-item {
+    text-align: center;
+}
+
+.members-name {
+    li {
+        display: inline;
+        &:not(:first-child)::before {
+            content: ' - ';
+        }
+    }
+}
+
+.main-menu {
+    display: grid;
+    width: 90%;
+    max-width: 500px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 60px 60px;
+    gap: 15px;
+
+    .top-score {
+        grid-column: 1 / 3;
+    }
+}
+
+.welcome-message {
+    font-size: 25px;
+    margin-bottom: 30px;
+}
+
+.wave {
+    display: inline-block;
+    transform-origin: 70% 70%;
+    animation: animate-wave 2s infinite ease-in-out;
+}
+
+@keyframes animate-wave {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    10% {
+        transform: rotate(14deg);
+    }
+
+    20% {
+        transform: rotate(-8deg);
+    }
+
+    30% {
+        transform: rotate(14deg);
+    }
+
+    40% {
+        transform: rotate(-4deg);
+    }
+
+    50% {
+        transform: rotate(10deg);
+    }
+
+    60% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}

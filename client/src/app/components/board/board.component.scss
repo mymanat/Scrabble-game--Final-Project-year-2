@@ -1,0 +1,11 @@
+.board {
+    user-select: none;
+    max-height: 100%;
+}
+
+.coordinate-text {
+    text-anchor: middle;
+    dominant-baseline: middle;
+    fill: black;
+    font-size: 1.5rem;
+}

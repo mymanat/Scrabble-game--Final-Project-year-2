@@ -1,0 +1,12 @@
+#confirm-settings {
+    position: absolute;
+    right: calc(50% - 140px / 2);
+    bottom: 5px;
+    margin-top: 5%;
+    margin-left: 5%;
+}
+.parameter-container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}

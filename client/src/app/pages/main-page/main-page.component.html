@@ -1,0 +1,42 @@
+<div class="container">
+    <mat-toolbar color="primary">
+        <span>Scrabble</span>
+    </mat-toolbar>
+    <main>
+        <img src="./assets/scrabble_logo.png" width="400" height="80" alt="Logo Scrabble" />
+
+        <p class="welcome-message">
+            Bienvenue dans le jeu de Scrabble de LOG2990.
+            <span class="wave">👋</span>
+        </p>
+
+        <div class="main-menu">
+            <button routerLink="/game-selection" mat-raised-button color="primary" (click)="classicModeChosen()">
+                <mat-icon>play_arrow</mat-icon>
+                Scrabble classique
+            </button>
+
+            <button routerLink="/game-selection" mat-raised-button color="primary" (click)="log2990ModeChosen()">
+                <mat-icon>play_arrow</mat-icon>
+                Scrabble LOG2990
+            </button>
+
+            <button class="top-score" (click)="openLeaderboard()" mat-raised-button color="primary">
+                <mat-icon>emoji_events</mat-icon>
+                Meilleurs scores
+            </button>
+        </div>
+    </main>
+
+    <div class="footer-item">
+        <h4 class="team-name">Équipe 101</h4>
+        <ul class="members-name">
+            <li>William Bouillon</li>
+            <li>David de Blas</li>
+            <li>Nicolas Deloumeau</li>
+            <li>Théo Louesdon</li>
+            <li>Mymanat Mohammed</li>
+            <li>Raphael Tremblay</li>
+        </ul>
+    </div>
+</div>

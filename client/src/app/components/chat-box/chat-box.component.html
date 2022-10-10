@@ -1,0 +1,41 @@
+<mat-card id="chat-box">
+    <mat-card-title>Boite de Clavardage</mat-card-title>
+    <div id="chat-list" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+        <div>
+            <mat-list role="list">
+                <mat-list-item role="listitem" class="chat-log-list" *ngFor="let line of (chat$ | async)?.chatMessage">
+                    <mat-card *ngIf="line.username === this.username; else errorMessage" class="message user-message">
+                        <strong>{{ line.username }}</strong> : {{ line.message }}
+                    </mat-card>
+                    <ng-template #errorMessage>
+                        <p *ngIf="line.messageType === 'Error'; else systemMessage" class="error-message">
+                            <strong>{{ line.messageType }}</strong> : {{ line.message }}
+                        </p>
+                    </ng-template>
+                    <ng-template #systemMessage>
+                        <p *ngIf="line.messageType === 'System'; else opponentMessage" class="system-message" (click)="sendHintMessage(line.message)">
+                            {{ line.message }}
+                        </p>
+                    </ng-template>
+                    <ng-template #opponentMessage>
+                        <mat-card class="message opponent-message">
+                            <strong>{{ line.username }}</strong> : {{ line.message }}
+                        </mat-card>
+                    </ng-template>
+                </mat-list-item>
+            </mat-list>
+        </div>
+    </div>
+
+    <form class="chat-box-form" onsubmit="$event.preventDefault()">
+        <mat-form-field id="chat-input" appearance="fill">
+            <mat-label>Message</mat-label>
+            <input matInput #chatMessage maxlength="512" placeholder="Discuter!" autocomplete="off" (blur)="chatBoxBlur()" />
+            <mat-hint align="start"><strong>Parlez avec l'adversaire</strong> </mat-hint>
+            <mat-hint align="end">{{ chatMessage.value.length }} / 512</mat-hint>
+        </mat-form-field>
+        <button mat-raised-button type="submit" id="submit-message-button" color="primary" (click)="$event.preventDefault(); submitMessage()">
+            <mat-icon aria-hidden="false" aria-label="send message">send</mat-icon>
+        </button>
+    </form>
+</mat-card>

@@ -1,0 +1,67 @@
+#chat-box {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#chat-list {
+    display: flex;
+    flex-direction: column-reverse;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+    word-break: break-all;
+    scroll-behavior: smooth;
+    flex: 1 1 100%;
+}
+
+#submit-message-button {
+    margin-left: 0.5em;
+    margin-bottom: 1.25em;
+    flex: 0 1 5em;
+}
+
+.message {
+    padding: 10px;
+    margin: 0.25rem 0;
+}
+
+.user-message {
+    background-color: #9ed5e4;
+}
+
+.opponent-message {
+    background-color: #f1f1f1;
+}
+
+.error-message {
+    margin: 0.125rem 0 !important;
+    color: red;
+}
+
+.system-message {
+    margin: 0.125rem 0 !important;
+    &:hover {
+        cursor: pointer;
+        background-color: #e9e9e9;
+        text-decoration: underline gray;
+    }
+}
+
+.chat-log-list {
+    font-size: 10pt;
+    height: auto !important;
+    ::ng-deep .mat-list-item-content {
+        padding: 0 !important;
+    }
+}
+
+#chat-input {
+    flex: 2 1 100%;
+}
+
+.chat-box-form {
+    display: flex;
+    align-items: stretch;
+}

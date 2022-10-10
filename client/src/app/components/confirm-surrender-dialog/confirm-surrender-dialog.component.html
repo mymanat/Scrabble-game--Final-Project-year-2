@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Êtes-vous sûr d'abandonner?</h1>
+<div mat-dialog-content id="buttons-countainer">
+    <button mat-raised-button color="primary" (click)="closeDialog()">
+        <mat-icon>play_arrow</mat-icon>
+        Continuer la partie
+    </button>
+
+    <button mat-stroked-button color="warn" (click)="surrenderGame()" routerLink="/home">
+        <mat-icon>flag</mat-icon>
+        Abandonner
+    </button>
+</div>

@@ -1,0 +1,69 @@
+<mat-card class="bot-name-admin">
+    <mat-card-title>
+        Nom des adversaires
+        <button mat-icon-button (click)="add()">
+            <mat-icon matTooltip="Ajouter">add</mat-icon>
+        </button>
+        <button mat-icon-button (click)="reset()">
+            <mat-icon matTooltip="Réinitialiser">restore</mat-icon>
+        </button>
+    </mat-card-title>
+    <mat-card-subtitle>Ajout/Retrait des noms des adversaires</mat-card-subtitle>
+    <div class="difficulty-grid">
+        <mat-card>
+            <mat-card-title> Debutant </mat-card-title>
+            <mat-card-content>
+                <ul class="name-list">
+                    <li class="bots" *ngFor="let name of (botNames$ | async)?.easy">
+                        <mat-card>
+                            <mat-card-title class="bot-title">
+                                {{ name }}
+                                <button
+                                    mat-icon-button
+                                    [disabled]="botNameNotChangeable(name)"
+                                    matTooltip="Modifier"
+                                    (click)="edit(name, 'Débutant')"
+                                >
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                                <button
+                                    mat-icon-button
+                                    [disabled]="botNameNotChangeable(name)"
+                                    matTooltip="Supprimer"
+                                    (click)="delete(name, 'Débutant')"
+                                >
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </mat-card-title>
+                        </mat-card>
+                    </li>
+                </ul>
+            </mat-card-content>
+        </mat-card>
+        <mat-card>
+            <mat-card-title> Expert </mat-card-title>
+            <mat-card-content>
+                <ul class="name-list">
+                    <li class="bots" *ngFor="let name of (botNames$ | async)?.hard">
+                        <mat-card>
+                            <mat-card-title class="bot-title"
+                                >{{ name }}
+                                <button mat-icon-button [disabled]="botNameNotChangeable(name)" matTooltip="Modifier" (click)="edit(name, 'Expert')">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                                <button
+                                    mat-icon-button
+                                    [disabled]="botNameNotChangeable(name)"
+                                    matTooltip="Supprimer"
+                                    (click)="delete(name, 'Expert')"
+                                >
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </mat-card-title>
+                        </mat-card>
+                    </li>
+                </ul>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</mat-card>

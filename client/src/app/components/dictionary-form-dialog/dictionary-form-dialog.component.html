@@ -1,0 +1,29 @@
+<mat-card class="dialog">
+    <mat-dialog-content>
+        <div>
+            <h1>Configuration d'un dictionaire</h1>
+        </div>
+        <form [formGroup]="settingsForm" (ngSubmit)="onSubmit()">
+            <div *ngIf="fileRequired">
+                <mat-label class="json-label">Fichier JSON: </mat-label>
+                <input class="json-input" formControlName="file" type="file" placeholder="Fichier"
+                    (change)="onFileSelected($event)" #fileUpload />
+            </div>
+            <mat-form-field class="parameter-container" appearance="fill">
+                <mat-label>Titre du dictionaire</mat-label>
+                <input matInput formControlName="title" placeholder="Titre" />
+            </mat-form-field>
+            <mat-form-field class="parameter-container" appearance="fill">
+                <mat-label>Description du dictionaire</mat-label>
+                <input matInput formControlName="description" placeholder="Description" />
+            </mat-form-field>
+
+            <mat-card-actions>
+                <button mat-raised-button color="primary" type="submit" id="confirm-settings"
+                    [disabled]="!settingsForm.valid">
+                    Confirmer le dictionaire
+                </button>
+            </mat-card-actions>
+        </form>
+    </mat-dialog-content>
+</mat-card>

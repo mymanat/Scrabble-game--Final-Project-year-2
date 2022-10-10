@@ -1,0 +1,15 @@
+table {
+    width: 100%;
+}
+
+.leaderboard-table ::ng-deep .mat-row {
+    &:nth-child(1) {
+        background-color: #ffe75e;
+    }
+    &:nth-child(2) {
+        background-color: #e4e4e4;
+    }
+    &:nth-child(3) {
+        background-color: #ddab78;
+    }
+}

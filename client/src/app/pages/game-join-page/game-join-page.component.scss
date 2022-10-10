@@ -1,0 +1,37 @@
+.centered {
+    left: 25%;
+}
+.mat-success {
+    background-color: green;
+    color: #fff;
+}
+
+.room {
+    display: block;
+    padding-right: 20px;
+}
+
+.join-room {
+    float: right;
+}
+
+.room-list {
+    margin-top: 15%;
+    margin-bottom: 10%;
+}
+
+.button {
+    width: 120px;
+    height: 36px;
+}
+
+#choose-randomly {
+    float: right;
+    margin-left: 2vw;
+}
+
+.cancel {
+    position: absolute;
+    right: 18px;
+    top: 0px;
+}

@@ -1,0 +1,116 @@
+{
+    "name": "Classic",
+    "letters": [
+        { "letter": "A", "points": 1, "amount": 9 },
+        { "letter": "B", "points": 3, "amount": 2 },
+        { "letter": "C", "points": 3, "amount": 2 },
+        { "letter": "D", "points": 2, "amount": 3 },
+        { "letter": "E", "points": 1, "amount": 15 },
+        { "letter": "F", "points": 4, "amount": 2 },
+        { "letter": "G", "points": 2, "amount": 2 },
+        { "letter": "H", "points": 4, "amount": 2 },
+        { "letter": "I", "points": 1, "amount": 8 },
+        { "letter": "J", "points": 8, "amount": 1 },
+        { "letter": "K", "points": 10, "amount": 1 },
+        { "letter": "L", "points": 1, "amount": 5 },
+        { "letter": "M", "points": 2, "amount": 3 },
+        { "letter": "N", "points": 1, "amount": 6 },
+        { "letter": "O", "points": 1, "amount": 6 },
+        { "letter": "P", "points": 3, "amount": 2 },
+        { "letter": "Q", "points": 8, "amount": 1 },
+        { "letter": "R", "points": 1, "amount": 6 },
+        { "letter": "S", "points": 1, "amount": 6 },
+        { "letter": "T", "points": 1, "amount": 6 },
+        { "letter": "U", "points": 1, "amount": 6 },
+        { "letter": "V", "points": 4, "amount": 2 },
+        { "letter": "W", "points": 10, "amount": 1 },
+        { "letter": "X", "points": 10, "amount": 1 },
+        { "letter": "Y", "points": 10, "amount": 1 },
+        { "letter": "Z", "points": 10, "amount": 1 },
+        { "letter": "*", "points": 0, "amount": 2 }
+    ],
+    "boardSize": { "x": 15, "y": 15 },
+    "multipliers": [
+        {
+            "multiplier": { "type": "Word", "amount": 3 },
+            "positions": [
+                { "x": 0, "y": 0 },
+                { "x": 7, "y": 0 },
+                { "x": 14, "y": 0 },
+                { "x": 0, "y": 7 },
+                { "x": 14, "y": 7 },
+                { "x": 0, "y": 14 },
+                { "x": 7, "y": 14 },
+                { "x": 14, "y": 14 }
+            ]
+        },
+        {
+            "multiplier": { "type": "Word", "amount": 2 },
+            "positions": [
+                { "x": 1, "y": 1 },
+                { "x": 13, "y": 1 },
+                { "x": 2, "y": 2 },
+                { "x": 12, "y": 2 },
+                { "x": 3, "y": 3 },
+                { "x": 11, "y": 3 },
+                { "x": 4, "y": 4 },
+                { "x": 10, "y": 4 },
+                { "x": 7, "y": 7 },
+                { "x": 4, "y": 10 },
+                { "x": 10, "y": 10 },
+                { "x": 3, "y": 11 },
+                { "x": 11, "y": 11 },
+                { "x": 2, "y": 12 },
+                { "x": 12, "y": 12 },
+                { "x": 1, "y": 13 },
+                { "x": 13, "y": 13 }
+            ]
+        },
+        {
+            "multiplier": { "type": "Letter", "amount": 3 },
+            "positions": [
+                { "x": 5, "y": 1 },
+                { "x": 9, "y": 1 },
+                { "x": 1, "y": 5 },
+                { "x": 5, "y": 5 },
+                { "x": 9, "y": 5 },
+                { "x": 13, "y": 5 },
+                { "x": 1, "y": 9 },
+                { "x": 5, "y": 9 },
+                { "x": 9, "y": 9 },
+                { "x": 13, "y": 9 },
+                { "x": 5, "y": 13 },
+                { "x": 9, "y": 13 }
+            ]
+        },
+        {
+            "multiplier": { "type": "Letter", "amount": 2 },
+            "positions": [
+                { "x": 3, "y": 0 },
+                { "x": 11, "y": 0 },
+                { "x": 6, "y": 2 },
+                { "x": 8, "y": 2 },
+                { "x": 0, "y": 3 },
+                { "x": 7, "y": 3 },
+                { "x": 14, "y": 3 },
+                { "x": 2, "y": 6 },
+                { "x": 6, "y": 6 },
+                { "x": 8, "y": 6 },
+                { "x": 12, "y": 6 },
+                { "x": 3, "y": 7 },
+                { "x": 11, "y": 7 },
+                { "x": 2, "y": 8 },
+                { "x": 6, "y": 8 },
+                { "x": 8, "y": 8 },
+                { "x": 12, "y": 8 },
+                { "x": 0, "y": 11 },
+                { "x": 7, "y": 11 },
+                { "x": 14, "y": 11 },
+                { "x": 6, "y": 12 },
+                { "x": 8, "y": 12 },
+                { "x": 3, "y": 14 },
+                { "x": 11, "y": 14 }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,33 @@
+.bot-name-admin {
+    height: 100%;
+}
+
+.name-list {
+    max-height: 20vh;
+    overflow-y: auto;
+}
+
+.actions {
+    float: right;
+}
+
+.difficulty-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.bots {
+    display: contents;
+}
+
+.bots > * {
+    margin-bottom: 5px;
+}
+
+.bot-title {
+    font-size: medium;
+}
+
+.mat-card-actions,
+.mat-card-subtitle {
+    margin-bottom: 0;
+}

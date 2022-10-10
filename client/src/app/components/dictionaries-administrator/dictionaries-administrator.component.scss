@@ -1,0 +1,35 @@
+.dictionaries {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.dictionary {
+    display: contents;
+}
+
+.dictionary > * {
+    margin-bottom: 5px;
+}
+
+.dictionary-title {
+    font-size: medium;
+}
+
+.dictionary-description {
+    margin-bottom: 0;
+}
+
+.mat-card-actions,
+.mat-card-subtitle {
+    margin-bottom: 0;
+}
+
+::ng-deep .mat-tooltip {
+    font-size: 14px;
+}
+
+.dict-list {
+    flex: 1;
+    overflow-y: auto;
+}

@@ -1,0 +1,23 @@
+<div class="container">
+    <mat-toolbar color="primary">
+        <button routerLink="/home" mat-icon-button class="home-button">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        <span>Admin</span>
+    </mat-toolbar>
+    <div class="liste-menus">
+        <app-dictionaries-administrator class="menu-dict"></app-dictionaries-administrator>
+        <app-bot-name-admin class="menu-bot"></app-bot-name-admin>
+        <app-game-history-table class="menu-hist"></app-game-history-table>
+
+        <mat-card class="menu-lead">
+            <mat-card-title
+                >Meilleurs scores
+                <button mat-icon-button (click)="resetLeaderBoard()">
+                    <mat-icon matTooltip="Réinitialiser">restore</mat-icon>
+                </button>
+            </mat-card-title>
+            <mat-card-subtitle>Réinitialisation des meilleurs scores</mat-card-subtitle>
+        </mat-card>
+    </div>
+</div>
